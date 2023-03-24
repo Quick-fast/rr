@@ -3,6 +3,7 @@ const cors = require('cors');
 const mongoose = require('mongoose');
 const morgan = require('morgan');
 const bodyParser = require('body-parser');
+require("dotenv").config();
 
 const app = express();
 
@@ -14,12 +15,12 @@ app.use(morgan('tiny'));
 
 const port = process.env.port || 3000;
 
-mongoose.connect(`mongodb+srv://ngatia:10richharry10@cluster0.6kjpxi7.mongodb.net/?retryWrites=true&w=majority`, {
+mongoose.connect(`${process.env.CONNECTING_STRING}`, {
     useNewUrlParser: true,
     dbName: 'Quickfast',
     useUnifiedTopology: true
 }).then(()=>{
-    console.log('The database has been connected successfuly')
+    console.log(`The new database has been connected successfuly`)
 }).catch((err)=>console.log(err))
 
 
