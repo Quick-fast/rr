@@ -73,7 +73,7 @@ app.post('/order', async(req, res)=>{
         destination: req.body.destination,
         phoneNumber: req.body.phoneNumber,
         distance: req.body.distance,
-        amountPaid: Math.floor((req.body.distance) * 1.50)
+        amountPaid: Math.ceil(req.body.distance * 1000) * 150
     })
 
     await order.save()
@@ -99,7 +99,7 @@ app.put('/modify-order/:id', async(req, res)=>{
         const order = await Order.findByIdAndUpdate(
             req.params.id,
             {
-                status: "transformed",
+                status: req.body.status,
                 user: req.body.userId
             },
             {
