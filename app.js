@@ -33,7 +33,7 @@ const orderSchema = new mongoose.Schema({
     amountPaid: { type: Number, required: true },
     dateCreated: {type: Date, default: Date.now},
     status: {type: String, default: 'pending'},
-    qfUserPhoneNumber: {type: String, default: 'none'}
+    qfUserPhoneNumber: {type: String}
 });
 
 const Order = mongoose.model('Order', orderSchema);
@@ -104,7 +104,7 @@ app.put('/modify-order/id', async(req, res)=>{
             req.body.id,
             {
                 status: req.body.status,
-                user: req.body.userId
+                qfUserPhoneNumber: req.body.qfUserPhoneNumber
             },
             {
                 new: true
