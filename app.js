@@ -31,6 +31,7 @@ const orderSchema = new mongoose.Schema({
     phoneNumber: { type: String, required: true },
     distance: { type: Number, required: true},
     amountPaid: { type: Number, required: true },
+    dateCreated: {type: Date, default: Date.now},
     status: {type: String, default: 'pending'}
 });
 
@@ -75,7 +76,7 @@ app.post('/order', async(req, res)=>{
         destination: req.body.destination,
         phoneNumber: req.body.phoneNumber,
         distance: Math.ceil((req.body.distance) * 1000),
-        amountPaid: Math.ceil(req.body.distance * 1000 * 1.50)
+        amountPaid: Math.ceil(req.body.distance * 1000 * 1.50),
     })
 
     await order.save()
