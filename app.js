@@ -25,6 +25,7 @@ mongoose.connect(`${process.env.CONNECTING_STRING}`, {
 
 
 const orderSchema = new mongoose.Schema({
+    description: {type: String, required: true},
     currentLocation: { type: Object, required: true },
     destination: { type: Object, required: true },
     phoneNumber: { type: String, required: true },
@@ -69,6 +70,7 @@ app.post('/register/user', async(req, res)=>{
 
 app.post('/order', async(req, res)=>{
     const order = new Order({
+        description: req.body.description,
         currentLocation: req.body.currentLocation,
         destination: req.body.destination,
         phoneNumber: req.body.phoneNumber,
