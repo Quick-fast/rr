@@ -32,7 +32,8 @@ const orderSchema = new mongoose.Schema({
     distance: { type: Number, required: true},
     amountPaid: { type: Number, required: true },
     dateCreated: {type: Date, default: Date.now},
-    status: {type: String, default: 'pending'}
+    status: {type: String, default: 'pending'},
+    qfUserPhoneNumber: {type: String, default: 'none'}
 });
 
 const Order = mongoose.model('Order', orderSchema);
@@ -97,10 +98,10 @@ app.post('/login', async(req, res)=>{
     }
 })
 
-app.put('/modify-order/:id', async(req, res)=>{
+app.put('/modify-order/id', async(req, res)=>{
     try{
         const order = await Order.findByIdAndUpdate(
-            req.params.id,
+            req.body.id,
             {
                 status: req.body.status,
                 user: req.body.userId
