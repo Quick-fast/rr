@@ -77,7 +77,7 @@ app.post('/order', async(req, res)=>{
         destination: req.body.destination,
         phoneNumber: req.body.phoneNumber,
         distance: Math.ceil(req.body.distance),
-        googleDistance: req.body.googleDistance,
+        googleDistance: Math.ceil(req.body.googleDistance),
     })
 
     await order.save()
